@@ -13,10 +13,10 @@ public abstract class Perfil {
 	public Perfil (String usuario) {
 		
 		this.usuario = usuario;
-		seguidos   = new Vector<Perfil>();
-		seguidores = new Vector<Perfil>();
-		timeline   = new Vector<Tweet>();
-		ativo = true;
+		this.seguidos   = new Vector<Perfil>();
+		this.seguidores = new Vector<Perfil>();
+		this.timeline   = new Vector<Tweet>();
+		this.ativo = true;
 		
 	}
 	
