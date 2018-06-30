@@ -33,7 +33,8 @@ public class VectorPerfis implements IRepositorioUsuario  {
 	public void atualizar (Perfil usuario) throws UNCException {
 		Perfil usuarioAuxiliar = buscar(usuario.getUsuario());
 		if(usuarioAuxiliar != null) {
-			usuarioAuxiliar = usuario;
+			usuarios.remove(usuarioAuxiliar);
+			usuarios.add(usuario);
 		}else {
 			throw new UNCException(usuario);
 		}
