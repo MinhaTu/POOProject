@@ -121,23 +121,39 @@ public class MyTwitter implements ITwitter {
 	
 	public Vector<Perfil> seguidores (String usuario) throws PIException, PDException {
 		Perfil usuarioAuxiliar = repositorio.buscar(usuario);
+		Vector<Perfil> seguidoresAtivos = new Vector<Perfil>();
 		if(usuarioAuxiliar == null) {
 			throw new PIException(usuario);
 		}else if(!usuarioAuxiliar.isAtivo()) {
 			throw new PDException(usuario);
 		}else {
-			return usuarioAuxiliar.getSeguidores();
+			Vector<Perfil> seguidores = usuarioAuxiliar.getSeguidores();
+			for(int i = 0; i < seguidores.size(); i++) {
+				if(seguidores.get(i).isAtivo()) {
+					seguidoresAtivos.add(seguidores.get(i));
+				}
+			}
 		}
+		return seguidoresAtivos;
 	}
 	
 	public Vector<Perfil> seguidos (String usuario) throws PIException , PDException {
 		Perfil usuarioAuxiliar = repositorio.buscar(usuario);
+		Vector<Perfil> seguidosAtivos = new Vector<Perfil>();
 		if(usuarioAuxiliar == null) {
 			throw new PIException(usuario);
 		}else if(!usuarioAuxiliar.isAtivo()) {
 			throw new PDException(usuario);
 		}else {
-			return usuarioAuxiliar.getSeguidos();
+			Vector<Perfil> seguidos = usuarioAuxiliar.getSeguidos();
+			for(int i = 0; i < seguidos.size(); i++) {
+				if(seguidos.get(i).isAtivo()) {
+					seguidosAtivos.add(seguidos.get(i));
+				}
+			}
+
 		}
+		return seguidosAtivos;
 	}
+	
 }
