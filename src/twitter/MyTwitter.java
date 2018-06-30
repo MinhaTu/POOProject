@@ -95,6 +95,9 @@ public class MyTwitter implements ITwitter {
 			}
 		}else if(seguidor == seguido) {
 			throw new SIException(seguidor);
+		}else {
+			segO.addSeguidor(segR);
+			segR.addSeguido(segO);
 		}
 	}
 	
