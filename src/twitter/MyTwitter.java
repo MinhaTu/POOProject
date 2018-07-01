@@ -62,20 +62,27 @@ public class MyTwitter implements ITwitter {
 			throw new PIException(usuario);
 		}else if(!usuarioAuxiliar.isAtivo()) {
 			throw new PDException(usuario);
-		}else {
-			return usuarioAuxiliar.getTimeline();
 		}
+		return usuarioAuxiliar.getTimeline();
 	}
 	
 	public Vector<Tweet> tweets(String usuario) throws PIException, PDException{
 		Perfil usuarioAuxiliar = repositorio.buscar(usuario);
+		Vector<Tweet> timeline = new Vector<Tweet>();
+		Vector<Tweet> tweets = new Vector<Tweet>();
 		if(usuarioAuxiliar == null) {
 			throw new PIException(usuario);
 		}else if(!usuarioAuxiliar.isAtivo()) {
 			throw new PDException(usuario);
 		}else {
-			return usuarioAuxiliar.getTimeline();
+			timeline = timeline(usuario);
+			for(int i = 0; i < timeline.size();i++) {
+				if(timeline.get(i).getUsuario() == usuario) {
+					tweets.add(timeline.get(i));
+				}
+			}
 		}
+		return tweets;
 	}
 	
 	public void seguir (String seguidor, String seguido) throws PIException, PDException, SIException{
